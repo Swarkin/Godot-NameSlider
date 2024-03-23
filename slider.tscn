@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://dasp78il7iihw"]
+
+[ext_resource type="Script" path="res://slider_scene.gd" id="1_gcbxc"]
+
+[sub_resource type="Gradient" id="Gradient_biy82"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 0.0784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oxldt"]
+gradient = SubResource("Gradient_biy82")
+width = 8
+height = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_qvh4j"]
+font_size = 14
+
+[node name="VBox" type="VBoxContainer" node_paths=PackedStringArray("slider", "letter_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+script = ExtResource("1_gcbxc")
+slider = NodePath("Slider")
+letter_label = NodePath("Letter")
+
+[node name="Slider" type="VSlider" parent="."]
+layout_mode = 2
+size_flags_horizontal = 1
+size_flags_vertical = 3
+theme_override_icons/tick = SubResource("GradientTexture2D_oxldt")
+max_value = 25.0
+rounded = true
+tick_count = 26
+ticks_on_borders = true
+
+[node name="Letter" type="Label" parent="."]
+layout_mode = 2
+size_flags_vertical = 1
+text = "-"
+label_settings = SubResource("LabelSettings_qvh4j")
+horizontal_alignment = 1
+
+[connection signal="value_changed" from="Slider" to="." method="_on_slider_value_changed"]

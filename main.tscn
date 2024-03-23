@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxmf771ijwqgv"]
+
+[ext_resource type="Script" path="res://name_slider.gd" id="1_ujnrn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5eiw2"]
+font_size = 24
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchor_left = 0.2
+anchor_top = 0.1
+anchor_right = 0.8
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NameSlider" type="VBoxContainer" parent="." node_paths=PackedStringArray("slider_container", "characters_slider", "result_label")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 32
+script = ExtResource("1_ujnrn")
+slider_container = NodePath("Sliders")
+characters_slider = NodePath("Characters")
+result_label = NodePath("Result")
+
+[node name="Sliders" type="HBoxContainer" parent="NameSlider"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Characters" type="HSlider" parent="NameSlider"]
+layout_mode = 2
+max_value = 25.0
+value = 8.0
+rounded = true
+scrollable = false
+
+[node name="Result" type="Label" parent="NameSlider"]
+auto_translate_mode = 1
+layout_mode = 2
+label_settings = SubResource("LabelSettings_5eiw2")
+horizontal_alignment = 1
+
+[node name="Info" type="Label" parent="NameSlider"]
+layout_mode = 2
+text = "Please slide your name."
+horizontal_alignment = 1
+
+[connection signal="value_changed" from="NameSlider/Characters" to="NameSlider" method="_on_characters_value_changed"]
