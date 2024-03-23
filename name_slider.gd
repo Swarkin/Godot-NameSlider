@@ -29,4 +29,4 @@ func _on_characters_value_changed(v: float) -> void:
 			instance.slider.value_changed.connect(_on_slider_changed.bind(slider_container.get_child_count()))
 			slider_container.add_child(instance)
 
-	result_label.text = result_label.text.left(value)
+	result_label.text = result_label.text.left(value).rpad(value, '_')
