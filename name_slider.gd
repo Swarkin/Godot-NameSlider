@@ -10,9 +10,13 @@ func _ready() -> void:
 	_on_characters_value_changed(characters_slider.value)
 
 func _on_slider_changed(value: float, i: int) -> void:
+	var letter := String.chr(65+int(value))
 	result_label.text = result_label.text \
 		.erase(i) \
-		.insert(i, String.chr(65+int(value)))
+		.insert(i, letter)
+
+	var slider := slider_container.get_child(i) as CustomSlider
+	slider.letter_label.text = letter
 
 func _on_characters_value_changed(v: float) -> void:
 	var value := int(v)
