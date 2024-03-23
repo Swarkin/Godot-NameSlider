@@ -1,7 +1,6 @@
 extends Control
 
 const SLIDER := preload('res://slider.tscn') as PackedScene
-const ALPHABET := ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
 
 @export var slider_container: Container
 @export var characters_slider: HSlider
@@ -13,7 +12,7 @@ func _ready() -> void:
 func _on_slider_changed(value: float, i: int) -> void:
 	result_label.text = result_label.text \
 		.erase(i) \
-		.insert(i, ALPHABET[int(value)])
+		.insert(i, String.chr(65+int(value)))
 
 func _on_characters_value_changed(v: float) -> void:
 	var value := int(v)
